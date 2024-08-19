@@ -5,7 +5,7 @@ import Styles from '../Styles/Styles'
 function SplashScreen({ navigation }) {
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace("Login")
+      navigation.replace("Home")
     }, 2000);
     return () => clearTimeout(timer);
   }, [navigation]);

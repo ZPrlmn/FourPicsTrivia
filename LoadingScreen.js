@@ -34,7 +34,6 @@ const LoadingScreen = () => {
   
   return (
     <View style={[Styles.container, { width: '100%' }]}>
-      <ImageBackground source={imageSource} style={[Styles.container, { width: '100%' }]}>
         <ActivityIndicator size="large" color="gray" />
         <View style={[LoadingStyles.textContainer, theme ? {backgroundColor: 'rgba(50,50,50,0.8)'} : {backgroundColor:'rgba(255,255,255,0.8)'}]}>
           <Text style={[LoadingStyles.text, theme ? {color:'white'} : {color:'black'}]}>{tip}</Text>
@@ -42,7 +41,6 @@ const LoadingScreen = () => {
         <View style={[LoadingStyles.border, theme ? {borderColor: 'rgba(50,50,50,0.8)'} : {borderColor:'rgba(255,255,255,0.8)'} ]}>
           <View style={[LoadingStyles.box, theme ? {backgroundColor: 'rgba(26, 0, 255, 0.6)'} : {backgroundColor: 'rgba(255, 179, 0, 0.6)'}]} />
         </View>
-      </ImageBackground>
     </View>
   );
 };

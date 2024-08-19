@@ -66,9 +66,6 @@ const Trivia = () => {
     };
 
     return (
-        <ImageBackground
-            source={require('../assets/bg.png')}
-            style={styles.backgroundImage} >
             <View style={styles.container}>
                 <View style={styles.btnHome}>
                     <Button title='Home' onPress={btnHome} />
@@ -112,7 +109,6 @@ const Trivia = () => {
                     </View>
                 ) : null}
             </View>
-        </ImageBackground>
     );
 };
 

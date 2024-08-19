@@ -4,10 +4,10 @@
     "slug": "FourPicsTrivia",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/imgAppJson/icon.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/imgAppJson/splash.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#616D3D"
     },
@@ -16,12 +16,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/imgAppJson/adaptive-icon.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.carloem.FourPicsTrivia"
     },
     "web": {
-      "favicon": "./assets/imgAppJson/favicon.png"
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "59c4587d-7970-4b57-92bf-f8c8de5bbe91"
+      }
     }
   }
 }

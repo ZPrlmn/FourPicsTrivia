@@ -33,7 +33,6 @@ const AnswerScreen = () => {
         <View style={Styles.container}>
             {isLoading ? <LoadingScreen /> :
                 <View style={styles.container}>
-                    <ImageBackground style={styles.bg} source={require('../assets/bg.png')}>
                         <Text style={styles.heading}>Trivia Answers</Text>
                         <ScrollView style={styles.scroll}>
                             {data.map((question, index) => (
@@ -62,7 +61,6 @@ const AnswerScreen = () => {
                                 <Text style={styles.btnText}>Home</Text>
                             </TouchableOpacity>
                         </View>
-                    </ImageBackground>
                 </View>
             }
         </View>

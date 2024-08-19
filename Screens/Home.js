@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View, TouchableOpacity, StatusBar, ImageBackground } from 'react-native'
+import { Text, View, TouchableOpacity, StatusBar, ImageBackground, Alert } from 'react-native'
 import Styles from '../Styles/Styles'
 import LoadingScreen from '../LoadingScreen'
 import { StackActions } from '@react-navigation/native';
@@ -35,14 +35,14 @@ function Home({ navigation }) {
 
   useEffect(() => {
     fetchData();
-    // No need to call playBgSound anymore
+
   }, []);
 
   return (
     <View style={Styles.container}>
       {isLoading ? <LoadingScreen /> :
         <View style={[Styles.container, { width: '100%' }]}>
-          <ImageBackground style={[Styles.container, { width: '100%' }]} source={require('../assets/bgHome.jpg')}>
+          
             <TouchableOpacity style={[{ position: 'absolute', top: 30, right: 20, backgroundColor: 'red', padding: 10, borderRadius: 10 }]} onPress={handleLogout}>
               <Text style={{ color: 'white' }}>Log out</Text>
             </TouchableOpacity>
@@ -60,7 +60,6 @@ function Home({ navigation }) {
                 </TouchableOpacity>
               </View>
             </View>
-          </ImageBackground>
         </View>
       }
       <StatusBar />

@@ -5,6 +5,8 @@ import Login from "./Screens/Login";
 import Home from "./Screens/Home"
 import Trivia from "./Screens/Trivia";
 import AnswerScreen from "./Screens/AnswerScreen"
+import FourPics from "./Screens/FourPics"
+import FourPicsAnswerScreen from "./Screens/FourPicsAnswerScreen"
 
 const Stack = createStackNavigator()
 export default function App() {
@@ -16,6 +18,8 @@ export default function App() {
         <Stack.Screen name='Home' component={Home} />
         <Stack.Screen name='Trivia' component={Trivia} />
         <Stack.Screen name='AnswerScreen' component={AnswerScreen} />
+        <Stack.Screen name='FourPics' component={FourPics} />
+        <Stack.Screen name='4PicsAns' component={FourPicsAnswerScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
