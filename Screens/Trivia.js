@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Button, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import questionsData from '../Data/questionsData';
 import styles from '../Styles/TriviaStyles';
+import { Audio } from 'expo-av';
 
 const Trivia = () => {
     const navigation = useNavigation();
@@ -14,12 +15,27 @@ const Trivia = () => {
     const [correctAnswer, setCorrectAnswer] = useState('');
     const [userAnswers, setUserAnswers] = useState(Array(questionsData.length).fill(''));
     const [totalScore, setTotalScore] = useState(0);
+    const [sound, setSound] = useState();
+
+    async function playSound(){
+        const { sound } = await Audio.Sound.createAsync( require('../assets/sounds/buttonClick.mp3'))
+        setSound(sound);
+        await sound.playAsync();
+      }
+    
+      useEffect(() => {
+        return sound ? () => {
+          sound.unloadAsync();
+        } : undefined
+      }, [sound]);
 
     const btnHome = () => {
+        playSound()
         navigation.navigate("Home");
     };
 
     const handleNextQuestion = () => {
+        playSound()
         setCurrentQuestionIndex(currentQuestionIndex + 1);
         setUserAnswer('');
         setIsCorrectAnswer(false);
@@ -28,6 +44,7 @@ const Trivia = () => {
     };
 
     const handlePrevQuestion = () => {
+        playSound()
         setCurrentQuestionIndex(currentQuestionIndex - 1);
         setUserAnswer('');
         setIsCorrectAnswer(false);
@@ -36,6 +53,7 @@ const Trivia = () => {
     };
 
     const checkAnswer = () => {
+        playSound()
         const correctAnswerText = questionsData[currentQuestionIndex].questionAnswer;
         const userEnteredAnswer = userAnswer.trim().toLowerCase();
 
@@ -55,7 +73,7 @@ const Trivia = () => {
     };
 
     const handlePracticeCompleted = () => {
-        // Navigate to AnswerScreen and pass necessary data
+        playSound()
         const data = questionsData;
         navigation.navigate('AnswerScreen', {
             data,
