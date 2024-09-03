@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, Text, Button, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import questionsData from '../Data/questionsData';
 import styles from '../Styles/TriviaStyles';
@@ -17,25 +17,20 @@ const Trivia = () => {
     const [totalScore, setTotalScore] = useState(0);
     const [sound, setSound] = useState();
 
-    async function playSound(){
-        const { sound } = await Audio.Sound.createAsync( require('../assets/sounds/buttonClick.mp3'))
+    async function playSound() {
+        const { sound } = await Audio.Sound.createAsync(require('../sounds/buttonClick.mp3'));
         setSound(sound);
         await sound.playAsync();
-      }
-    
-      useEffect(() => {
-        return sound ? () => {
-          sound.unloadAsync();
-        } : undefined
-      }, [sound]);
+    }
 
-    const btnHome = () => {
-        playSound()
-        navigation.navigate("Home");
-    };
+    useEffect(() => {
+        return sound ? () => {
+            sound.unloadAsync();
+        } : undefined;
+    }, [sound]);
 
     const handleNextQuestion = () => {
-        playSound()
+        playSound();
         setCurrentQuestionIndex(currentQuestionIndex + 1);
         setUserAnswer('');
         setIsCorrectAnswer(false);
@@ -44,7 +39,7 @@ const Trivia = () => {
     };
 
     const handlePrevQuestion = () => {
-        playSound()
+        playSound();
         setCurrentQuestionIndex(currentQuestionIndex - 1);
         setUserAnswer('');
         setIsCorrectAnswer(false);
@@ -53,7 +48,7 @@ const Trivia = () => {
     };
 
     const checkAnswer = () => {
-        playSound()
+        playSound();
         const correctAnswerText = questionsData[currentQuestionIndex].questionAnswer;
         const userEnteredAnswer = userAnswer.trim().toLowerCase();
 
@@ -73,7 +68,8 @@ const Trivia = () => {
     };
 
     const handlePracticeCompleted = () => {
-        playSound()
+        playSound();
+        // Navigate to AnswerScreen and pass necessary data
         const data = questionsData;
         navigation.navigate('AnswerScreen', {
             data,
@@ -84,9 +80,12 @@ const Trivia = () => {
     };
 
     return (
+        <ImageBackground
+            source={require('../assets/bg.png')}
+            style={styles.backgroundImage} >
             <View style={styles.container}>
                 <View style={styles.btnHome}>
-                    <Button title='Home' onPress={btnHome} />
+                    <Button title='Home' onPress={() => navigation.navigate("Home")} />
                 </View>
                 {currentQuestionIndex < questionsData.length ? (
                     <View style={styles.card}>
@@ -127,6 +126,7 @@ const Trivia = () => {
                     </View>
                 ) : null}
             </View>
+        </ImageBackground>
     );
 };
 

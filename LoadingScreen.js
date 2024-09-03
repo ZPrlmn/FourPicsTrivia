@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, ActivityIndicator, ImageBackground, Text } from 'react-native';
+import { View, ActivityIndicator, ImageBackground, StyleSheet, Text } from 'react-native';
+import Animated, { useSharedValue, withTiming, useAnimatedStyle, Easing } from 'react-native-reanimated';
 import Styles from './Styles/Styles';
 import LoadingStyles from './Styles/LoadingStyles';
 
@@ -24,6 +25,8 @@ const LoadingScreen = () => {
   const [imageSource, setImageSource] = useState(null);
   const [tip, setTip] = useState('')
 
+  const widthValue = useSharedValue(1);
+
   useEffect(() => {
     const tipValue = Math.floor(Math.random() * 5);
     setTip(Tip[tipValue].tip);
@@ -32,17 +35,40 @@ const LoadingScreen = () => {
     setImageSource(DATA[value].img);
   }, []);
   
+
+  useEffect(() => {
+    
+  }, []);
+
+  const config = {
+    duration: 2000,
+    easing: Easing.bezier(0, 0.1, 0, 1),
+  };
+
+  const style = useAnimatedStyle(() => {
+    return {
+      width: withTiming(`${widthValue.value}%`, config),
+    };
+  });
+
+  useEffect(() => {
+    widthValue.value = 100;
+  }, []);
+
   return (
     <View style={[Styles.container, { width: '100%' }]}>
+      <ImageBackground source={imageSource} style={[Styles.container, { width: '100%' }]}>
         <ActivityIndicator size="large" color="gray" />
         <View style={[LoadingStyles.textContainer, theme ? {backgroundColor: 'rgba(50,50,50,0.8)'} : {backgroundColor:'rgba(255,255,255,0.8)'}]}>
           <Text style={[LoadingStyles.text, theme ? {color:'white'} : {color:'black'}]}>{tip}</Text>
         </View>
         <View style={[LoadingStyles.border, theme ? {borderColor: 'rgba(50,50,50,0.8)'} : {borderColor:'rgba(255,255,255,0.8)'} ]}>
-          <View style={[LoadingStyles.box, theme ? {backgroundColor: 'rgba(26, 0, 255, 0.6)'} : {backgroundColor: 'rgba(255, 179, 0, 0.6)'}]} />
+          <Animated.View style={[LoadingStyles.box, theme ? {backgroundColor: 'rgba(26, 0, 255, 0.6)'} : {backgroundColor: 'rgba(255, 179, 0, 0.6)'}, style]} />
         </View>
+      </ImageBackground>
     </View>
   );
 };
+
 
 export default LoadingScreen;

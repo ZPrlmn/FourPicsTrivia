@@ -225,11 +225,6 @@ const FourPicsStyles = StyleSheet.create({
         width: 40
     },
     settingsModal:{
-        backgroundColor:'yellow',
-        padding: 10,
-        borderWidth: 5,
-        borderColor: 'orange',
-        borderRadius: 10
     },
     btnClose:{
         position: 'absolute',

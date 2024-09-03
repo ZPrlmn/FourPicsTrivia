@@ -1,14 +1,15 @@
-import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
-import SplashScreen from "./Screens/SplashScreen";
-import Login from "./Screens/Login";
-import Home from "./Screens/Home"
-import Trivia from "./Screens/Trivia";
-import AnswerScreen from "./Screens/AnswerScreen"
-import FourPics from "./Screens/FourPics"
-import FourPicsAnswerScreen from "./Screens/FourPicsAnswerScreen"
+import { createStackNavigator } from '@react-navigation/stack';
+import SplashScreen from './Screens/SplashScreen';
+import Home from './Screens/Home';
+import Login from './Screens/Login';
+import Trivia from './Screens/Trivia';
+import FourPics from './Screens/FourPics';
+import AnswerScreen from './Screens/AnswerScreen';
+import FourPicsAnswerScreen from './Screens/FourPicsAnswerScreen';
 
 const Stack = createStackNavigator()
+
 export default function App() {
   return (
     <NavigationContainer>
@@ -17,10 +18,12 @@ export default function App() {
         <Stack.Screen name='Login' component={Login} />
         <Stack.Screen name='Home' component={Home} />
         <Stack.Screen name='Trivia' component={Trivia} />
-        <Stack.Screen name='AnswerScreen' component={AnswerScreen} />
         <Stack.Screen name='FourPics' component={FourPics} />
+        <Stack.Screen name='AnswerScreen' component={AnswerScreen} />
         <Stack.Screen name='4PicsAns' component={FourPicsAnswerScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
+
